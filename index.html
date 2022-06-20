@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class="container">
+        <div class="row">
+            <section class="search-city col-4" id="search-city">
+                <form class="search-input-container" id="search-input-container">
+                    <h2>Searh for a City:</h2>
+                    <input class="input" id="input" placeholder="San Diego">
+                    <button class="search-btn" id="search-btn" type="submit">Search</button>
+                </form>
+                <div class="city-list row" id="city-list">
+                    <button class="city-btn col-12" id="austin">Austin</button>
+                    <button class="city-btn col-12" id="chicago">Chicago</button>
+                    <button class="city-btn col-12" id="newyork">New York</button>
+                    <button class="city-btn col-12" id="orlando">Orlando</button>
+                    <button class="city-btn col-12" id="sanfrancisco">San Francisco</button>
+                    <button class="city-btn col-12" id="seattle">Seattle</button>
+                    <button class="city-btn col-12" id="denver">Denver</button>
+                    <button class="city-btn col-12" id="atlanta">Atlanta</button>
+                </div>
+            </section>
+            <div class="weather-container col-8" id="weather-container">
+                <div class="city-details-container" id="city-details-container">
+                    <h2 class="city-name-date" id="city-name-date"></h2>
+                    <div class="date" id="city-display-current"></div>
+                    <div class="temp" id="temp-current"></div>
+                    <div class="wind" id="wind-current"></div>
+                    <div class="humidity" id="humidity-current"></div>
+                    <div class="uv-index" id="uv-index-current"></div>
+                </div>
+                <div class="forecast-card-container" id="forecast-card-container">
+                    <h3>5-Day Forecast:</h3>
+                    <div class="forecast-cards" id="forecast-cards">
+                        <div class="card" id="card1">
+                            <h2 class="date"></h2>
+                            <div class="temp"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                        </div>
+                        <div class="card" id="card2">
+                            <h2 class="date"></h2>
+                            <div class="temp"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                        </div>
+                        <div class="card" id="card3">
+                            <h2 class="date"></h2>
+                            <div class="temp"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                        </div>
+                        <div class="card" id="card4">
+                            <h2 class="date"></h2>
+                            <div class="temp"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                        </div>
+                        <div class="card" id="card5">
+                            <h2 class="date"></h2>
+                            <div class="temp"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/assets/js/script.js"></script>
+</body>
+</html>

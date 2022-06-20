@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: rgb(194, 220, 255);
+}
+
+header {
+    background-color: rgb(239, 241, 244);
+}
+
+h1 {
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+}
+
+.city-details-container {
+    border: 3px white solid;
+    height: 200px;
+}
+
+.forecast-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    width: 120px;
+    height: 120px;
+    border: 3px white solid;
+}
+
+.search-city, .weather-container {
+    border: solid white 3px;
+}
+
+.city-list {
+    gap: 12px;
+}
+
+.city-btn {
+    padding: 8px;
+}
