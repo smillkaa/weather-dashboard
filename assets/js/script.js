@@ -1,5 +1,6 @@
 // bug: for loop keeps creating new cards with each button click
-//bug: local storage only stores one item
+// bug: local storage only stores one item
+// to do: link buttons to weather data
 
 // setting api key as const and getting the html elements
 const APIkey = "bf78c31f08302cdbdd2390f6de936883"
@@ -98,12 +99,17 @@ function searchHistory() {
     localStorage.setItem("city", cityName)
     for (let i = 0; i < localStorage.length; i++) {
         let cityBtn = document.createElement('button')
+        cityBtn.classList.add('city-btn', 'col-12')
         cityBtn.textContent = cityName
         cityList.appendChild(cityBtn)
-
+        $(cityBtn).on("click", function() {
+            console.log(getCoordinates(cityName))
+            
+        })
     }
 
 }
+
 
 searchBtn.addEventListener("click", function() { 
     event.preventDefault()
