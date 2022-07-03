@@ -1,3 +1,6 @@
+/* bug: search and weather containers don't create a gap */
+/* bug: can't minimize gaps betwee cards */
+
 * {
     margin: 0;
     padding: 0;
@@ -34,7 +37,7 @@ h1 {
 }
 
 .search-city, .weather-container {
-    border: solid white 3px;
+    /* border: solid white 3px; */
 }
 
 .city-list {

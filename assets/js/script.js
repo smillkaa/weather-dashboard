@@ -1,4 +1,5 @@
-// bugs: for loop keeps adding with new searc
+// bug: for loop keeps creating new cards with each button click
+//bug: local storage only stores one item
 
 // setting api key as const and getting the html elements
 const APIkey = "bf78c31f08302cdbdd2390f6de936883"
@@ -15,6 +16,7 @@ const date = document.getElementById('date')
 const icon1El = document.getElementById('icon-current')
 const forecastTitleEl = document.getElementById('forecast')
 const forecastContainer = document.getElementById('forecast-cards')
+const cityList = document.getElementById('city-list')
 
 // getting coordinates for weather api fetch link
 const getCoordinates = function(cityName) {
@@ -91,9 +93,22 @@ const getWeatherData = function(latitude, longitude) {
     })
 }
 
+// search history buttons
+function searchHistory() {
+    localStorage.setItem("city", cityName)
+    for (let i = 0; i < localStorage.length; i++) {
+        let cityBtn = document.createElement('button')
+        cityBtn.textContent = cityName
+        cityList.appendChild(cityBtn)
+
+    }
+
+}
+
 searchBtn.addEventListener("click", function() { 
     event.preventDefault()
     cityName = searchInputEl.value
     getCoordinates(cityName);
+    searchHistory()
     searchInputEl.value = " "
 })
