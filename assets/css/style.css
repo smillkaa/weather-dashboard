@@ -30,7 +30,6 @@ h1 {
 
 .card {
     width: 120px;
-    height: 120px;
     border: 3px white solid;
 }
 
@@ -44,4 +43,17 @@ h1 {
 
 .city-btn {
     padding: 8px;
+}
+
+#city-date {
+    display: flex;
+    gap: 20px;
+}
+
+#date {
+    padding-top: 6px;
+}
+
+.card-text {
+    font-size: x-small;
 }
