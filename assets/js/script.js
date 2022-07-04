@@ -1,3 +1,7 @@
+// fix: search history button length is local storage length
+// fix: how I get the city name parameter to work
+// understand what I did with local storage
+
 // setting api key as const and getting the html elements
 const APIkey = "bf78c31f08302cdbdd2390f6de936883"
 let searchBtn = document.getElementById("search-btn")
@@ -62,6 +66,7 @@ const getWeatherData = function(latitude, longitude) {
                     forecastContainer.appendChild(card)
                     
                     let date = document.createElement('div')
+                    date.classList.add('card-date')
                     card.appendChild(date)
                     test = data.daily[i].dt
                     var day = new Date(test*1000)
