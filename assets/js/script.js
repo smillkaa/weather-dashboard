@@ -1,7 +1,3 @@
-// bug: for loop keeps creating new cards with each button click
-// bug: local storage only stores one item
-// to do: link buttons to weather data
-
 // setting api key as const and getting the html elements
 const APIkey = "bf78c31f08302cdbdd2390f6de936883"
 let searchBtn = document.getElementById("search-btn")
@@ -18,6 +14,7 @@ const icon1El = document.getElementById('icon-current')
 const forecastTitleEl = document.getElementById('forecast')
 const forecastContainer = document.getElementById('forecast-cards')
 const cityList = document.getElementById('city-list')
+let historyList = JSON.parse(localStorage.getItem("city")) || []
 
 // getting coordinates for weather api fetch link
 const getCoordinates = function(cityName) {
@@ -43,7 +40,7 @@ const getWeatherData = function(latitude, longitude) {
         if(response.ok) {
             return response.json()
             .then(function(data) {
-                
+            
                 // displaying current weather data
                 cityDisplayed.textContent = cityName
                 date.textContent = '(' + (DateTime.now().toLocaleString(DateTime.DATE_SHORT)) + ')'
@@ -56,7 +53,9 @@ const getWeatherData = function(latitude, longitude) {
 
                 // displaying 5 day forecast data
                 forecastTitleEl.innerHTML = "<h3>5 Day Forecast:</h3>"
-                for (let i=1; i < 6; i++) {
+
+                forecastContainer.innerHTML = " "
+                for (let i = 1; i < 6; i++) {
                 
                     let card = document.createElement('div')
                     card.classList.add('card')
@@ -94,27 +93,38 @@ const getWeatherData = function(latitude, longitude) {
     })
 }
 
-// search history buttons
+// function to create search history buttons
 function searchHistory() {
-    localStorage.setItem("city", cityName)
+
+    setLocalStorage()
     for (let i = 0; i < localStorage.length; i++) {
         let cityBtn = document.createElement('button')
         cityBtn.classList.add('city-btn', 'col-12')
         cityBtn.textContent = cityName
         cityList.appendChild(cityBtn)
-        $(cityBtn).on("click", function() {
-            console.log(getCoordinates(cityName))
-            
+
+        // displays weather data when city button is clicked
+        cityBtn.addEventListener("click", function(event) {
+            this.value = cityBtn.textContent
+            cityName = this.value
+            getCoordinates(cityName)
         })
     }
-
+}   
+    
+// function to set local storage
+function setLocalStorage() {
+    historyList.push(cityName)
+    localStorage.setItem("city", JSON.stringify(historyList))
 }
 
-
+// search button preventing from refreshing, calling all the functions above and clearing search form
 searchBtn.addEventListener("click", function() { 
     event.preventDefault()
     cityName = searchInputEl.value
-    getCoordinates(cityName);
+    getCoordinates(cityName)
     searchHistory()
+    
     searchInputEl.value = " "
+    
 })
