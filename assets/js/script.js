@@ -96,12 +96,12 @@ const getWeatherData = function(latitude, longitude) {
 
 // function to create search history buttons
 function searchHistory() {
-
+    cityList.innerHTML = ""
     setLocalStorage()
-    for (let i = 0; i < localStorage.length; i++) {
+    for (let i = 0; i < historyList.length; i++) {
         let cityBtn = document.createElement('button')
         cityBtn.classList.add('city-btn', 'col-12')
-        cityBtn.textContent = cityName
+        cityBtn.textContent = historyList[i]
         cityList.appendChild(cityBtn)
 
         // displays weather data when city button is clicked
@@ -126,6 +126,6 @@ searchBtn.addEventListener("click", function(event) {
     getCoordinates(cityName)
     searchHistory()
     
-    searchInputEl.value = " "
+    searchInputEl.value = ""
     
 })
