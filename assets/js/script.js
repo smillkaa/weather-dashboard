@@ -18,7 +18,7 @@ let historyList = JSON.parse(localStorage.getItem("city")) || []
 
 // getting coordinates for weather api fetch link
 const getCoordinates = function(cityName) {
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName},&limit=1&appid=${APIkey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityName},&limit=1&appid=${APIkey}`)
     .then(response => {
         if (response.ok) {
             return response.json() // returns readable for javascript
@@ -120,7 +120,7 @@ function setLocalStorage() {
 }
 
 // search button preventing from refreshing, calling all the functions above and clearing search form
-searchBtn.addEventListener("click", function() { 
+searchBtn.addEventListener("click", function(event) { 
     event.preventDefault()
     cityName = searchInputEl.value
     getCoordinates(cityName)
