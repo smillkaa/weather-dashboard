@@ -28,12 +28,12 @@ const getCoordinates = function(cityName) {
         let latitude = data[0].lat
         let longitude = data[0].lon
 
-        getWeatherData(latitude, longitude)
+        getWeatherData(latitude, longitude, cityName)
     })
 }
 
 // getting weather data
-const getWeatherData = function(latitude, longitude) {
+const getWeatherData = function(latitude, longitude, cityName) {
 
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`)
     .then(response => {
@@ -49,8 +49,19 @@ const getWeatherData = function(latitude, longitude) {
                 temp.textContent = "Temp: " + data.current.temp + ' \u00B0F'
                 wind.textContent = "Wind: " + data.current.wind_speed + " mph"
                 humidity.textContent = "Humidity: " + data.current.humidity + "%"
-                uvIndex.textContent = "UV Index: " + data.current.uvi
-
+                uvIndex.innerHTML = `UV Index: <span id = 'uv-value'>${data.current.uvi}</span>`
+                let uvValue = document.getElementById('uv-value')
+                if (data.current.uvi <= 2 ) {
+                    uvValue.style.backgroundColor = "#84e16a"
+                    uvValue.style.color = "white"
+                }
+                else if (data.current.uvi <= 5 || data.current.uvi >= 3) {
+                    uvValue.style.backgroundColor = "#fff700"
+                }
+                if (data.current.uvi >= 7) {
+                    uvValue.style.backgroundColor = "rgb(199, 58, 58)"
+                    uvValue.style.color = "white"
+                }
                 // displaying 5 day forecast data
                 forecastTitleEl.innerHTML = "<h3>5 Day Forecast:</h3>"
 
@@ -111,6 +122,17 @@ function searchHistory() {
         })
     }
 }   
+
+function pageLoad() {
+    if (historyList.length) {
+        let lastSearch = historyList[historyList.length-1]
+        getCoordinates(lastSearch)
+    }
+    else {
+        cityDisplayed.textContent = "Welcome to Weather Dashboard!"
+        cityDisplayed.style.color = "#66a1c5"
+    }
+}
     
 // function to set local storage
 function setLocalStorage() {
@@ -135,3 +157,4 @@ searchBtn.addEventListener("click", function(event) {
 })
 
 searchHistory()
+pageLoad()
