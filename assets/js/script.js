@@ -2,7 +2,7 @@
 const APIkey = "bf78c31f08302cdbdd2390f6de936883"
 let searchBtn = document.getElementById("search-btn")
 let searchInputEl = document.getElementById("input")
-let cityName = searchInputEl.value
+let cityName
 const temp = document.getElementById('temp')
 const wind = document.getElementById('wind')
 const humidity = document.getElementById('humidity')
@@ -97,7 +97,6 @@ const getWeatherData = function(latitude, longitude) {
 // function to create search history buttons
 function searchHistory() {
     cityList.innerHTML = ""
-    setLocalStorage()
     for (let i = 0; i < historyList.length; i++) {
         let cityBtn = document.createElement('button')
         cityBtn.classList.add('city-btn', 'col-12')
@@ -122,10 +121,17 @@ function setLocalStorage() {
 // search button preventing from refreshing, calling all the functions above and clearing search form
 searchBtn.addEventListener("click", function(event) { 
     event.preventDefault()
-    cityName = searchInputEl.value
-    getCoordinates(cityName)
-    searchHistory()
+    cityName = searchInputEl.value.trim()
+    console.log(cityName)
+    if (cityName) {
+        getCoordinates(cityName)
+        setLocalStorage()
+        searchHistory()
+        
+    }
     
     searchInputEl.value = ""
     
 })
+
+searchHistory()
